@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/login/domain/entities/user_app.dart';
+import '../../domain/entities/user_app.dart';
 
 class UserModel extends UserApp {
   UserModel({@required User firebaseUser})

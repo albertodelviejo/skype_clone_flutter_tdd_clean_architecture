@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/core/error/exceptions.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/core/error/failures.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/login/data/models/user_model.dart';
+import '../../../../core/error/exceptions.dart';
+import '../../../../core/error/failures.dart';
+import '../models/user_model.dart';
 
 abstract class FirebaseAuthRemoteDataSource {
   Future<UserModel> loginUserInFirebase();

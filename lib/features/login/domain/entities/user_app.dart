@@ -13,6 +13,8 @@ class UserApp extends Equatable {
       @required this.name,
       @required this.email,
       @required this.photoURL,
-      @required this.searchKey})
-      : super([uid, name, email, photoURL, searchKey]);
+      @required this.searchKey});
+
+  @override
+  List<Object> get props => [uid, name, email, photoURL, searchKey];
 }
