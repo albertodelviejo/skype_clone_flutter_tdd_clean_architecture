@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -16,17 +14,6 @@ class Login implements UseCase<UserApp, NoParams> {
   @override
   Future<Either<Failure, UserApp>> call(NoParams params) async {
     return await repository.loginUser();
-  }
-}
-
-class Logout implements UseCase<bool, NoParams> {
-  final FirebaseAuthRepository repository;
-
-  Logout(this.repository);
-
-  @override
-  Future<Either<Failure, bool>> call(NoParams params) async {
-    return await repository.logoutUser();
   }
 }
 

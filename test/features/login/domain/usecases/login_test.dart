@@ -15,7 +15,7 @@ void main() {
 
   setUp(() {
     mockLoginFirebaseRepository = MockLoginFirebaseRepository();
-    usecase = Login(repository: mockLoginFirebaseRepository);
+    usecase = Login(mockLoginFirebaseRepository);
   });
 
   UserApp user = UserApp(

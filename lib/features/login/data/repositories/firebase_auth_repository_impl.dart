@@ -21,8 +21,12 @@ class FirebaseAuthRepositoryImpl extends FirebaseAuthRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> logoutUser() {
-    // TODO: implement logoutUser
-    throw UnimplementedError();
+  Future<Either<Failure, bool>> logoutUser() async {
+    try {
+      final result = await remoteDataSource.logoutUserInFirebase();
+      return Right(result);
+    } on ConnectionException {
+      return Left(ConnectionFailure());
+    }
   }
 }
