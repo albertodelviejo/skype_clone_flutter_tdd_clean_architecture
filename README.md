@@ -1,6 +1,6 @@
 # skype_clone_flutter_tdd_clean_architecture
 
-A new Flutter project.
+This proyect is created with the aim to build a Skype app clone in Flutter, with Test Driven Development and Clean Architecture.
 
 ## Getting Started
 
