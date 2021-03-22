@@ -2,9 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:skype_clone_flutter_tdd_clean_architecture/core/error/failures.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/login/domain/entities/user_app.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/login/domain/repositories/firebase_auth_repository.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/login/domain/usecases/login.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/auth/domain/entities/user_app.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/auth/domain/repositories/firebase_auth_repository.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/auth/domain/usecases/login.dart';
 
 class MockLoginFirebaseRepository extends Mock
     implements FirebaseAuthRepository {}

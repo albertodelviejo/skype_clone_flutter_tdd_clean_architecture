@@ -4,10 +4,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:skype_clone_flutter_tdd_clean_architecture/core/error/failures.dart';
 import 'package:skype_clone_flutter_tdd_clean_architecture/core/usecases/usecase.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/login/domain/entities/user_app.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/login/domain/usecases/login.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/login/domain/usecases/logout.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/login/presentation/bloc/bloc.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/auth/domain/entities/user_app.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/auth/domain/usecases/login.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/auth/domain/usecases/logout.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/auth/presentation/bloc/auth_event.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/auth/presentation/bloc/auth_state.dart';
 
 class MockLogin extends Mock implements Login {}
 

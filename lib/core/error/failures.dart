@@ -9,3 +9,5 @@ class Failure extends Equatable {
 }
 
 class ConnectionFailure extends Failure {}
+
+class PermissionFailure extends Failure {}

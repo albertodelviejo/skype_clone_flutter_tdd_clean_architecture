@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/login/presentation/widgets/logout_button_widget.dart';
+import '../widgets/logout_button_widget.dart';
 import '../bloc/bloc.dart';
 import '../widgets/login_button_widget.dart';
 
@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
       child: Column(
         children: <Widget>[
           SizedBox(
-            height: 40,
+            height: 100,
           ),
           BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
@@ -29,12 +29,15 @@ class LoginPage extends StatelessWidget {
               } else if (state is Loading) {
                 return LoadingWidget();
               } else if (state is Loaded) {
-                return LogoutButton();
+                return LoadingNextScreen();
               } else if (state is Error) {
                 return ErrorDisplay();
               }
             },
-          )
+          ),
+          SizedBox(
+            height: 100,
+          ),
         ],
       ),
     );
@@ -59,6 +62,14 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Center(child: CircularProgressIndicator());
+  }
+}
+
+class LoadingNextScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Navigator.pushNamed(context, '/home');
     return Center(child: CircularProgressIndicator());
   }
 }

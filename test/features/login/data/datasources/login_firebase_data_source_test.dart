@@ -3,8 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mockito/mockito.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/login/data/datasources/firebase_auth_remote_data_source.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/login/domain/entities/user_app.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/auth/data/datasources/firebase_auth_remote_data_source.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/auth/domain/entities/user_app.dart';
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 

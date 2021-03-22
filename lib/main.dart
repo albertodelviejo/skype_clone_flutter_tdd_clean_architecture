@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/pages/main_page.dart';
 
-import 'features/login/presentation/pages/login_page.dart';
+import 'features/auth/presentation/pages/login_page.dart';
 import 'injection_container.dart' as di;
 
 Future<void> main() async {
@@ -18,9 +19,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Skype Clone',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        brightness: Brightness.dark,
       ),
-      home: LoginPage(),
+      routes: {
+        '/': (context) => LoginPage(),
+        '/home': (context) => MainPage(),
+      },
     );
   }
 }
