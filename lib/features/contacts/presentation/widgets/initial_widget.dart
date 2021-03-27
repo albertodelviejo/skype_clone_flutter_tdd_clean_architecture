@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/bloc/bloc.dart';
+import '../bloc/bloc.dart';
 
 class InitialWidget extends StatelessWidget {
   const InitialWidget({

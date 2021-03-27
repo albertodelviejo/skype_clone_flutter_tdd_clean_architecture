@@ -31,7 +31,7 @@ class FirebaseAuthRemoteDataSourceImpl implements FirebaseAuthRemoteDataSource {
 
       await addOrUpdateUserDb(result.user);
 
-      return UserModel(firebaseUser: result.user);
+      return UserModel.fromFirebaseUser(result.user);
     } on ConnectionFailure {
       throw ConnectionException();
     }
@@ -49,12 +49,20 @@ class FirebaseAuthRemoteDataSourceImpl implements FirebaseAuthRemoteDataSource {
   @override
   Future<bool> addOrUpdateUserDb(User user) async {
     var _chatsCollection = FirebaseFirestore.instance.collection('users');
-    var result = await _chatsCollection.add({
-      "uid": user.uid,
-      "username": user.displayName,
-      "email": user.email,
-      "searchKey": user.displayName[0]
-    });
-    return (result != null) ? true : false;
+    final QuerySnapshot result = await FirebaseFirestore.instance
+        .collection('users')
+        .where('id', isEqualTo: user.uid)
+        .get();
+    final List<DocumentSnapshot> documents = result.docs;
+    if (documents.length == 0) {
+      var result = await _chatsCollection.add({
+        "uid": user.uid,
+        "username": user.displayName,
+        "email": user.email,
+        "searchKey": user.displayName[0]
+      });
+      return (result != null) ? true : false;
+    }
+    return true;
   }
 }

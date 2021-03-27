@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/core/usecases/usecase.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/domain/usecases/get_contacts.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/bloc/bloc.dart';
+import '../../../../core/usecases/usecase.dart';
+import '../../domain/usecases/get_contacts.dart';
+import 'bloc.dart';
 
 const String CONTACTS_ERROR_MESSAGE = "Error de permisos";
 

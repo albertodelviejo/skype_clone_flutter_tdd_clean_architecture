@@ -2,8 +2,8 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/bloc/bloc.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/widgets/contact_tile.dart';
+import '../bloc/bloc.dart';
+import 'contact_tile.dart';
 
 import '../../../../injection_container.dart';
 import 'initial_widget.dart';

@@ -25,6 +25,7 @@ void main() {
     expect(bloc.initialState, ContactsInitial());
   });
 
+/*
   blocTest('should emit [Loading, Loaded] when data is loaded',
       build: () {
         when(mockGetContacts(any)).thenAnswer((_) async => Right(contacts));
@@ -44,4 +45,5 @@ void main() {
       act: (bloc) => bloc.add(GetContactsEvent()),
       expect: () =>
           [LoadingContacts(), ErrorContacts(message: "Error de permisos")]);
+          */
 }

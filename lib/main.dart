@@ -1,8 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/pages/main_page.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/auth/presentation/pages/login_page.dart';
+import 'features/chat/presentation/pages/chat_page.dart';
+import 'features/contacts/presentation/pages/main_page.dart';
 
-import 'features/auth/presentation/pages/login_page.dart';
 import 'injection_container.dart' as di;
 
 Future<void> main() async {
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => LoginPage(),
         '/home': (context) => MainPage(),
+        '/chat': (context) => ChatPage()
       },
     );
   }

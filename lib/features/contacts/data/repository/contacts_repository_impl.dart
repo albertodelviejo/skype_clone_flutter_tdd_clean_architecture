@@ -1,4 +1,4 @@
-import 'package:skype_clone_flutter_tdd_clean_architecture/core/error/exceptions.dart';
+import '../../../../core/error/exceptions.dart';
 
 import '../../../../core/error/failures.dart';
 import 'package:dartz/dartz.dart';

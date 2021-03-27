@@ -8,20 +8,23 @@ class ContactTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      child: Row(
-        children: [
-          SizedBox(
-            height: 20,
-            width: 20,
-          ),
-          Text(
-            name,
-            style: TextStyle(color: Colors.white),
-          )
-        ],
+    return GestureDetector(
+      child: Container(
+        height: 60,
+        child: Row(
+          children: [
+            SizedBox(
+              height: 20,
+              width: 20,
+            ),
+            Text(
+              name,
+              style: TextStyle(color: Colors.white),
+            )
+          ],
+        ),
       ),
+      onTap: () => Navigator.pushNamed(context, '/chat'),
     );
   }
 }

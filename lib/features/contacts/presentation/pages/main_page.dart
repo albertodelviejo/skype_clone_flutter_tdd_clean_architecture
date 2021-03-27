@@ -1,11 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/bloc/bloc.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/bloc/contacts_bloc.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/widgets/appbars/contacts_app_bar.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/widgets/contacts_body.dart';
+import '../widgets/appbars/contacts_app_bar.dart';
+import '../widgets/contacts_body.dart';
 
 class MainPage extends StatefulWidget {
   _MainPageState createState() => _MainPageState();
@@ -62,7 +59,7 @@ class _MainPageState extends State<MainPage> {
       case 1:
         return AppBar();
       case 2:
-        return ContactsAppBar(context);
+        return contactsAppBar(context);
       default:
         return AppBar();
     }

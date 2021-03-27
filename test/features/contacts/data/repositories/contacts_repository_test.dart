@@ -30,11 +30,9 @@ void main() {
     expect(result, Right(contacts));
   });
 
-  test('Should return Error if the permission are not given properly',
+  test(
+      'Should return [PermissionFailure] if the permission are not given properly',
       () async {
-    when(mockContactsFromDeviceSourceData.getContactsFromDevice())
-        .thenAnswer((_) async => contacts);
-
     final result = await contactsRepositoryImpl.getContacts();
 
     expect(result, Left(PermissionFailure));

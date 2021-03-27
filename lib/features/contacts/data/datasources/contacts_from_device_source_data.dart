@@ -1,5 +1,5 @@
 import 'package:contacts_service/contacts_service.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/core/error/exceptions.dart';
+import '../../../../core/error/exceptions.dart';
 
 abstract class ContactsFromDeviceSourceData {
   Future<Iterable> getContactsFromDevice();

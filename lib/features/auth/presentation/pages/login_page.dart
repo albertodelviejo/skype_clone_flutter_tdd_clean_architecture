@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../widgets/logout_button_widget.dart';
@@ -67,6 +68,9 @@ class LoadingWidget extends StatelessWidget {
 }
 
 class LoadingNextScreen extends StatelessWidget {
+  final User user;
+
+  const LoadingNextScreen({Key key, this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Navigator.pushNamed(context, '/home');

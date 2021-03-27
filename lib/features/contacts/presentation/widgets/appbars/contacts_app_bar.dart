@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget ContactsAppBar(BuildContext context) {
+Widget contactsAppBar(BuildContext context) {
   return AppBar(
     actions: [
       Padding(

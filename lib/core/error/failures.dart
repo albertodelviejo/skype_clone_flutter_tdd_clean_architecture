@@ -11,3 +11,7 @@ class Failure extends Equatable {
 class ConnectionFailure extends Failure {}
 
 class PermissionFailure extends Failure {}
+
+class GetConversationFailure extends Failure {}
+
+class SendMessageFailure extends Failure {}
