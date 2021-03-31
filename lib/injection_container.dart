@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/chat/data/datasources/chat_data_source.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/chat/domain/usecases/get_conversation.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/chat/domain/usecases/send_message.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/chat/presentation/bloc/chat_bloc.dart';
+import 'features/chat/data/datasources/chat_data_source.dart';
+import 'features/chat/domain/usecases/get_conversation.dart';
+import 'features/chat/domain/usecases/send_message.dart';
+import 'features/chat/presentation/bloc/chat_bloc.dart';
 import 'features/chat/data/repositories/chat_repository_impl.dart';
 import 'features/chat/domain/repositories/chat_repository.dart';
 import 'features/contacts/data/datasources/contacts_from_device_source_data.dart';

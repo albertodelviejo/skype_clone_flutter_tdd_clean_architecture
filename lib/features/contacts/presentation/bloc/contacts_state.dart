@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 abstract class ContactsState extends Equatable {
@@ -23,3 +24,5 @@ class ErrorContacts extends ContactsState {
 
   ErrorContacts({@required this.message});
 }
+
+class NavigateToChatContacts extends ContactsState {}

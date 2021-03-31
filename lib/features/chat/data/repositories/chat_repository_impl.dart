@@ -1,4 +1,4 @@
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/chat/data/models/message_model.dart';
+import '../models/message_model.dart';
 
 import '../../domain/entities/message.dart';
 

@@ -10,20 +10,27 @@ import '../../../../injection_container.dart';
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(child: buildBody(context)),
+    return BlocProvider(
+      create: (context) => sl<AuthBloc>(),
+      child: Scaffold(
+        body: SingleChildScrollView(child: buildBody(context)),
+      ),
     );
   }
 
-  BlocProvider<AuthBloc> buildBody(BuildContext context) {
-    return BlocProvider(
-      create: (_) => sl<AuthBloc>(),
-      child: Column(
-        children: <Widget>[
-          SizedBox(
-            height: 100,
-          ),
-          BlocBuilder<AuthBloc, AuthState>(
+  Widget buildBody(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        SizedBox(
+          height: 100,
+        ),
+        BlocListener<AuthBloc, AuthState>(
+          listener: (context, state) {
+            if (state is Loaded) {
+              Navigator.pushNamed(context, '/home');
+            }
+          },
+          child: BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               if (state is Empty) {
                 return LoginButton();
@@ -36,11 +43,11 @@ class LoginPage extends StatelessWidget {
               }
             },
           ),
-          SizedBox(
-            height: 100,
-          ),
-        ],
-      ),
+        ),
+        SizedBox(
+          height: 100,
+        ),
+      ],
     );
   }
 }
@@ -73,7 +80,6 @@ class LoadingNextScreen extends StatelessWidget {
   const LoadingNextScreen({Key key, this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Navigator.pushNamed(context, '/home');
     return Center(child: CircularProgressIndicator());
   }
 }

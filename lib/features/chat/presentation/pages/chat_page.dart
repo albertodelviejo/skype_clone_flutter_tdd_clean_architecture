@@ -3,7 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/chat/data/models/message_model.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/bloc/bloc.dart';
+import '../../data/models/message_model.dart';
 import '../bloc/chat_bloc.dart';
 import '../widgets/chat_controls.dart';
 import '../widgets/chat_message_item.dart';
@@ -20,7 +21,12 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              BlocProvider.of<ContactsBloc>(context).add(GetContactsEvent());
+              Navigator.of(context).pop();
+            }),
         title: Text("Test"),
         actions: [
           Padding(

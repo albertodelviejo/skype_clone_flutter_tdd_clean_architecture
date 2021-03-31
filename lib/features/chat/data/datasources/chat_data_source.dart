@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/chat/data/models/conversation_model.dart';
+import '../models/conversation_model.dart';
 import '../../../../core/error/exceptions.dart';
 import '../models/message_model.dart';
 

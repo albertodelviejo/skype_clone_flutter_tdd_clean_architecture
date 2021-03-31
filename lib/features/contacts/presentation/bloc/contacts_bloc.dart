@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../../domain/usecases/get_contacts.dart';
@@ -38,6 +39,8 @@ class ContactsBloc extends Bloc<ContactsEvent, ContactsState> {
       } else {
         yield ErrorContacts(message: CONTACTS_ERROR_MESSAGE);
       }
+    } else if (event is ContactTilePressedEvent) {
+      yield NavigateToChatContacts();
     }
   }
 

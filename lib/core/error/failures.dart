@@ -15,3 +15,5 @@ class PermissionFailure extends Failure {}
 class GetConversationFailure extends Failure {}
 
 class SendMessageFailure extends Failure {}
+
+class SearchFailure extends Failure {}

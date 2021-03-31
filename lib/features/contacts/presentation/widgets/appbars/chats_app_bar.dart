@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-Widget contactsAppBar() {
+Widget chatsAppBar() {
   return AppBar(
+    leading: Icon(Icons.notifications),
     actions: [
       Padding(
         padding: const EdgeInsets.all(8.0),
@@ -9,11 +10,8 @@ Widget contactsAppBar() {
       ),
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Icon(Icons.more_vert),
+        child: Icon(Icons.more_vert_outlined),
       )
     ],
-    centerTitle: true,
-    title: Text("Contacts"),
-    leading: Icon(Icons.notifications),
   );
 }
