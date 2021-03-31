@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget callsAppBar() {
+Widget callsAppBar(BuildContext context) {
   return AppBar(
     leading: Icon(Icons.notifications),
     title: Text('Calls'),
@@ -8,7 +8,10 @@ Widget callsAppBar() {
     actions: [
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Icon(Icons.search),
+        child: IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () => Navigator.of(context).pushNamed('/search'),
+        ),
       )
     ],
   );

@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/search/presentation/pages/search_page.dart';
 import 'features/auth/presentation/pages/login_page.dart';
 import 'features/chat/presentation/pages/chat_page.dart';
 import 'features/contacts/presentation/bloc/bloc.dart';
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => LoginPage(),
           '/home': (context) => MainPage(),
-          '/chat': (context) => ChatPage()
+          '/chat': (context) => ChatPage(),
+          '/search': (context) => SearchPage(),
         },
       ),
     );

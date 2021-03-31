@@ -61,11 +61,11 @@ class _MainPageState extends State<MainPage> {
   Widget _showSelectedAppBar(int _selectedPage, BuildContext context) {
     switch (_selectedTabIndex) {
       case 0:
-        return chatsAppBar();
+        return chatsAppBar(context);
       case 1:
-        return callsAppBar();
+        return callsAppBar(context);
       case 2:
-        return contactsAppBar();
+        return contactsAppBar(context);
       default:
         return AppBar();
     }

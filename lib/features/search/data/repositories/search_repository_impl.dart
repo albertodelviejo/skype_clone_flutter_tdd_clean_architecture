@@ -9,7 +9,7 @@ import 'package:skype_clone_flutter_tdd_clean_architecture/features/search/domai
 class SearchRepositoryImpl implements SearchRepository {
   final SearchDataSource searchDataSource;
 
-  SearchRepositoryImpl({@required this.searchDataSource});
+  SearchRepositoryImpl(@required this.searchDataSource);
   @override
   Future<Either<Failure, QuerySnapshot>> getUserByName(
       String searchField) async {

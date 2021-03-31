@@ -7,8 +7,8 @@ part 'search_event.dart';
 part 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  final Search usecase;
-  SearchBloc({@required this.usecase}) : super(SearchInitial());
+  final Search search;
+  SearchBloc({@required this.search}) : super(SearchInitial());
   @override
   Stream<SearchState> mapEventToState(
     SearchEvent event,
@@ -16,7 +16,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     if (event is SearchStringEvent) {
       yield SearchingState();
       final eitherFailureQuery =
-          await usecase(SearchParams(searchField: event.searchField));
+          await search(SearchParams(searchField: event.searchField));
 
       yield* eitherFailureQuery.fold((l) async* {
         yield SearchError();
