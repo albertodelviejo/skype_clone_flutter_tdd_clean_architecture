@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skype_clone_flutter_tdd_clean_architecture/features/search/presentation/bloc/search_bloc.dart';
 import 'package:skype_clone_flutter_tdd_clean_architecture/features/search/presentation/widgets/search_field_widget.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/search/presentation/widgets/searched_widget.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/search/presentation/widgets/user_search_tile.dart';
 
 import '../../../../injection_container.dart';
 
@@ -17,35 +19,39 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<SearchBloc>(),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blue[600],
-          shadowColor: Colors.transparent,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () => Navigator.pop(context),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue[600],
+        shadowColor: Colors.transparent,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pop(context),
         ),
-        body: Column(
-          children: [
-            searchFieldWidget(context, searchEditingController),
-            BlocBuilder<SearchBloc, SearchState>(
+      ),
+      body: Column(
+        children: [
+          searchFieldWidget(context, searchEditingController),
+          BlocListener<SearchBloc, SearchState>(
+            listener: (context, state) {
+              if (state is SearchTilePressedState) {
+                Navigator.of(context).pushNamed('/chat');
+              }
+            },
+            child: BlocBuilder<SearchBloc, SearchState>(
               builder: (context, state) {
-                if (state is SearchInitial) {
+                if (state is SearchInitial || state is SearchTilePressedState) {
                   return Container();
                 } else if (state is SearchingState) {
                   return Center(child: CircularProgressIndicator());
                 } else if (state is SearchedState) {
-                  return ListView.builder(itemBuilder: null);
+                  return SearchedWidget(list: state.listOfTiles);
                 } else if (state is SearchError) {
                   return Text('Error');
                 }
               },
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

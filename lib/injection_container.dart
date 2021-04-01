@@ -29,6 +29,7 @@ final sl = GetIt.instance;
 
 init() async {
 // Bloc
+//
   sl.registerFactory(() => AuthBloc(
         login: sl(),
         logout: sl(),

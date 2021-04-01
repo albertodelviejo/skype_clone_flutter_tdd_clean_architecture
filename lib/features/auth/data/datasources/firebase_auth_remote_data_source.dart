@@ -51,7 +51,7 @@ class FirebaseAuthRemoteDataSourceImpl implements FirebaseAuthRemoteDataSource {
     var _chatsCollection = FirebaseFirestore.instance.collection('users');
     final QuerySnapshot result = await FirebaseFirestore.instance
         .collection('users')
-        .where('id', isEqualTo: user.uid)
+        .where('email', isEqualTo: user.email)
         .get();
     final List<DocumentSnapshot> documents = result.docs;
     if (documents.length == 0) {
@@ -59,7 +59,8 @@ class FirebaseAuthRemoteDataSourceImpl implements FirebaseAuthRemoteDataSource {
         "uid": user.uid,
         "username": user.displayName,
         "email": user.email,
-        "searchKey": user.displayName[0]
+        "searchKey": user.displayName[0],
+        "photoURL": user.photoURL
       });
       return (result != null) ? true : false;
     }

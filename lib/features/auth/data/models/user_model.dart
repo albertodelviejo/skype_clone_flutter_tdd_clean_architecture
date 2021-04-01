@@ -5,23 +5,33 @@ import '../../domain/entities/user_app.dart';
 class UserModel extends UserApp {
   UserModel(
       {@required String email,
-      String name,
+      String username,
       String searchKey,
       String uid,
       String photoURL})
       : super(
             email: email,
-            name: name,
-            searchKey: name[0],
+            name: username,
+            searchKey: username[0],
             uid: uid,
             photoURL: photoURL);
 
   factory UserModel.fromFirebaseUser(User user) {
     return UserModel(
         email: user.email,
-        name: user.displayName,
+        username: user.displayName,
         photoURL: user.photoURL,
         searchKey: user.displayName[0],
         uid: user.uid);
+  }
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      email: json['email'],
+      username: json['username'],
+      photoURL: json['photoURL'],
+      searchKey: json['searchKey'],
+      uid: json['uid'],
+    );
   }
 }

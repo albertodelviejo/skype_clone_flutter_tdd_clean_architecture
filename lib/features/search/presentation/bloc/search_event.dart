@@ -12,3 +12,5 @@ class SearchStringEvent extends SearchEvent {
 
   SearchStringEvent({@required this.searchField});
 }
+
+class SearchTilePressedEvent extends SearchEvent {}
