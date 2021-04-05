@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/search/presentation/bloc/search_bloc.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/search/presentation/widgets/search_field_widget.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/search/presentation/widgets/searched_widget.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/search/presentation/widgets/user_search_tile.dart';
-
-import '../../../../injection_container.dart';
+import '../bloc/search_bloc.dart';
+import '../widgets/search_field_widget.dart';
+import '../widgets/searched_widget.dart';
 
 class SearchPage extends StatefulWidget {
   SearchPage({Key key}) : super(key: key);
@@ -34,7 +31,10 @@ class _SearchPageState extends State<SearchPage> {
           BlocListener<SearchBloc, SearchState>(
             listener: (context, state) {
               if (state is SearchTilePressedState) {
-                Navigator.of(context).pushNamed('/chat');
+                Navigator.of(context).pushNamed('/chat', arguments: [
+                  state.user,
+                  state.peer,
+                ]);
               }
             },
             child: BlocBuilder<SearchBloc, SearchState>(

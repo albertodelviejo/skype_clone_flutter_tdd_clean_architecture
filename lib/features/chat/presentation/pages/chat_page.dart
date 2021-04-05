@@ -3,7 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/bloc/bloc.dart';
+import '../../../auth/data/models/user_model.dart';
+import '../../../contacts/presentation/bloc/bloc.dart';
 import '../../data/models/message_model.dart';
 import '../bloc/chat_bloc.dart';
 import '../widgets/chat_controls.dart';
@@ -12,13 +13,18 @@ import '../widgets/chat_message_item.dart';
 import '../../../../injection_container.dart';
 
 class ChatPage extends StatelessWidget {
-  final User user;
-  final User peer;
+  final List<UserModel> data;
+  UserModel user;
+  UserModel peer;
 
-  ChatPage({Key key, this.user, this.peer}) : super(key: key);
+  ChatPage({Key key, this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    if (data.length == 2) {
+      user = data[0];
+      peer = data[1];
+    }
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -27,7 +33,7 @@ class ChatPage extends StatelessWidget {
               BlocProvider.of<ContactsBloc>(context).add(GetContactsEvent());
               Navigator.of(context).pop();
             }),
-        title: Text("Test"),
+        title: Text(peer.name),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -42,7 +48,10 @@ class ChatPage extends StatelessWidget {
       body: Column(
         children: <Widget>[
           Flexible(child: Container(child: buildBody(context))),
-          ChatControls()
+          ChatControls(
+            user1: user.uid,
+            user2: peer.uid,
+          )
         ],
       ),
     );
@@ -56,7 +65,10 @@ class ChatPage extends StatelessWidget {
           BlocBuilder<ChatBloc, ChatState>(
             builder: (context, state) {
               if (state is ChatInitial) {
-                return InitialChatWIdget();
+                return InitialChatWidget(
+                  user1: user.uid,
+                  user2: peer.uid,
+                );
               } else if (state is LoadingConversation) {
                 return Center(child: CircularProgressIndicator());
               } else if (state is LoadedConversation) {
@@ -75,20 +87,21 @@ class ChatPage extends StatelessWidget {
   }
 }
 
-class InitialChatWIdget extends StatelessWidget {
-  const InitialChatWIdget({
-    Key key,
-  }) : super(key: key);
+class InitialChatWidget extends StatelessWidget {
+  final String user1;
+  final String user2;
+  const InitialChatWidget({Key key, this.user1, this.user2}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    dispatchGetContacts(context);
+    dispatchGetContacts(context, user1, user2);
     return Center(child: CircularProgressIndicator());
   }
 }
 
-void dispatchGetContacts(BuildContext context) {
-  BlocProvider.of<ChatBloc>(context).add(GetConversationEvent());
+void dispatchGetContacts(BuildContext context, String user1, String user2) {
+  BlocProvider.of<ChatBloc>(context)
+      .add(GetConversationEvent(user1: user1, user2: user2));
 }
 
 class LoadedConversationWidget extends StatelessWidget {

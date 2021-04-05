@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/bloc/bloc.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/bloc/contacts_bloc.dart';
 
 class ContactTile extends StatelessWidget {
   final String name;
-  final String photo_uri;
 
-  ContactTile({@required this.name, this.photo_uri});
+  ContactTile({@required this.name});
 
   @override
   Widget build(BuildContext context) {

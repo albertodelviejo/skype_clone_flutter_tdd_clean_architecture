@@ -1,11 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/search/data/datasources/search_data_source.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/search/data/repositories/search_repository_impl.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/search/domain/repositories/search_repository.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/search/domain/usecases/search.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/search/presentation/bloc/search_bloc.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/chats_list/data/datasources/chat_list_data_source.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/chats_list/data/repositories/chat_list_repository_impl.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/chats_list/domain/repositories/chats_list_repository.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/chats_list/domain/usecases/get_chats_list.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/chats_list/presentation/bloc/chats_list_bloc.dart';
+import 'features/search/data/datasources/search_data_source.dart';
+import 'features/search/data/repositories/search_repository_impl.dart';
+import 'features/search/domain/repositories/search_repository.dart';
+import 'features/search/domain/usecases/search.dart';
+import 'features/search/presentation/bloc/search_bloc.dart';
 import 'features/chat/data/datasources/chat_data_source.dart';
 import 'features/chat/domain/usecases/get_conversation.dart';
 import 'features/chat/domain/usecases/send_message.dart';
@@ -48,6 +53,10 @@ init() async {
         search: sl(),
       ));
 
+  sl.registerFactory(() => ChatsListBloc(
+        getChatsList: sl(),
+      ));
+
 // Use cases
 
   sl.registerLazySingleton(() => Login(sl()));
@@ -56,6 +65,7 @@ init() async {
   sl.registerLazySingleton(() => GetConversation(sl()));
   sl.registerLazySingleton(() => SendMessage(sl()));
   sl.registerLazySingleton(() => Search(sl()));
+  sl.registerLazySingleton(() => GetChatsList(sl()));
 
 // Repository
 
@@ -65,6 +75,8 @@ init() async {
       () => ContactsRepositoryImpl(sl()));
   sl.registerLazySingleton<ChatRepository>(() => ChatRepositoryImpl(sl()));
   sl.registerLazySingleton<SearchRepository>(() => SearchRepositoryImpl(sl()));
+  sl.registerLazySingleton<ChatListRepository>(
+      () => ChatListRepositoryImpl(sl()));
 
 // Data sources
 
@@ -77,6 +89,8 @@ init() async {
   sl.registerLazySingleton<SearchDataSource>(() => SearchDataSourceImpl(
         firestore: sl(),
       ));
+  sl.registerLazySingleton<ChatListDataSource>(
+      () => ChatListDataSourceImpl(firestore: sl()));
 
 // Externals
 

@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/bloc/bloc.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/widgets/appbars/calls_app_bar.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/presentation/widgets/appbars/chats_app_bar.dart';
+import 'package:skype_clone_flutter_tdd_clean_architecture/features/chats_list/presentation/pages/chats_body.dart';
+import '../bloc/bloc.dart';
+import '../widgets/appbars/calls_app_bar.dart';
+import '../widgets/appbars/chats_app_bar.dart';
 import '../../../../injection_container.dart';
 import '../widgets/appbars/contacts_app_bar.dart';
 import '../widgets/contacts_body.dart';
@@ -46,7 +47,7 @@ class _MainPageState extends State<MainPage> {
   Widget _showSelectedPage(int _selectedPage, BuildContext context) {
     switch (_selectedPage) {
       case 0:
-        return Center(child: Text("Chats"));
+        return chatsBody(context);
 
       case 1:
         return Center(child: Text("Calls"));

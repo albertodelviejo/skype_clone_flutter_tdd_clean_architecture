@@ -12,13 +12,20 @@ class SendMessage extends UseCase<bool, SendMessageParams> {
 
   @override
   Future<Either<Failure, bool>> call(SendMessageParams params) {
-    return repository.sendMessage(params.conversationID, params.message);
+    return repository.sendMessage(
+        params.conversationID, params.user1, params.user2, params.message);
   }
 }
 
 class SendMessageParams {
   final String conversationID;
+  final String user1;
+  final String user2;
   final Message message;
 
-  SendMessageParams({@required this.conversationID, @required this.message});
+  SendMessageParams(
+      {@required this.conversationID,
+      @required this.user1,
+      @required this.user2,
+      @required this.message});
 }

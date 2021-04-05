@@ -7,7 +7,6 @@ import 'package:skype_clone_flutter_tdd_clean_architecture/core/error/failures.d
 import 'package:skype_clone_flutter_tdd_clean_architecture/features/chat/data/datasources/chat_data_source.dart';
 import 'package:skype_clone_flutter_tdd_clean_architecture/features/chat/data/models/message_model.dart';
 import 'package:skype_clone_flutter_tdd_clean_architecture/features/chat/data/repositories/chat_repository_impl.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/features/chat/domain/entities/message.dart';
 import 'package:skype_clone_flutter_tdd_clean_architecture/features/chat/domain/repositories/chat_repository.dart';
 
 class MockChatDataSource extends Mock implements ChatDataSource {}
@@ -32,10 +31,11 @@ void main() {
   });
 
   test('Should return true if the message is sended correctly', () async {
-    when(mockChatDataSource.sendMessage(conversationID, message))
+    when(mockChatDataSource.sendMessage(conversationID, "1", "2", message))
         .thenAnswer((_) async => true);
 
-    final result = await repository.sendMessage(conversationID, message);
+    final result =
+        await repository.sendMessage(conversationID, "1", "2", message);
 
     expectLater(result, Right(true));
   });
@@ -43,10 +43,11 @@ void main() {
   test(
       'Should return [SendMessageFailure] when a message has not been properly sent',
       () async {
-    when(mockChatDataSource.sendMessage(conversationID, message))
+    when(mockChatDataSource.sendMessage(conversationID, "1", "2", message))
         .thenThrow(SendMessageException());
 
-    final result = await repository.sendMessage(conversationID, message);
+    final result =
+        await repository.sendMessage(conversationID, "1", "2", message);
 
     expect(result, equals(Left(SendMessageFailure())));
   });

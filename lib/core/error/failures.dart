@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 class Failure extends Equatable {
@@ -17,3 +16,5 @@ class GetConversationFailure extends Failure {}
 class SendMessageFailure extends Failure {}
 
 class SearchFailure extends Failure {}
+
+class GetChatsFailure extends Failure {}

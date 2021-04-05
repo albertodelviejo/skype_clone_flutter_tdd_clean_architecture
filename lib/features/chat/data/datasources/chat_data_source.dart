@@ -7,7 +7,8 @@ import '../models/message_model.dart';
 abstract class ChatDataSource {
   Stream getMessagesStream(String conversationID);
 
-  Future<bool> sendMessage(String conversation, MessageModel message);
+  Future<bool> sendMessage(
+      String conversation, String user1, String user2, MessageModel message);
 }
 
 class ChatDataSourceImpl implements ChatDataSource {
@@ -26,16 +27,21 @@ class ChatDataSourceImpl implements ChatDataSource {
   }
 
   @override
-  Future<bool> sendMessage(String conversationID, MessageModel message) async {
+  Future<bool> sendMessage(String conversationID, String user1, String user2,
+      MessageModel message) async {
     try {
       DocumentReference docRef =
           firebase.collection('conversations').doc(conversationID);
 
       try {
-        return await updateConversation(docRef: docRef, message: message);
+        return await updateConversation(
+            docRef: docRef, user1: user1, user2: user2, message: message);
       } on FirebaseException {
         return await createNewConversation(
-            conversationID: conversationID, messageModel: message);
+            conversationID: conversationID,
+            user1: user1,
+            user2: user2,
+            messageModel: message);
       }
     } on Exception {
       throw SendMessageException();
@@ -43,23 +49,36 @@ class ChatDataSourceImpl implements ChatDataSource {
   }
 
   Future<bool> updateConversation(
-      {DocumentReference docRef, MessageModel message}) async {
+      {DocumentReference docRef,
+      String user1,
+      String user2,
+      MessageModel message}) async {
     await docRef.collection('messages').add(message.toJson());
+    await docRef.update({
+      'user1': user1,
+      'user2': user2,
+    });
 
     return true;
   }
 
   Future<bool> createNewConversation(
-      {String conversationID, MessageModel messageModel}) async {
+      {String conversationID,
+      String user1,
+      String user2,
+      MessageModel messageModel}) async {
     ConversationModel conversation = ConversationModel(
         date: Timestamp.now(),
         messages: [messageModel.toJson()],
         uid: conversationID);
-    await firebase
-        .collection('conversations')
-        .doc(conversationID)
-        .collection('messages')
-        .add(conversation.toJson());
+
+    DocumentReference docRef =
+        firebase.collection('conversations').doc(conversationID);
+
+    await docRef.set({
+      'user1': user1,
+      'user2': user2,
+    });
 
     return true;
   }

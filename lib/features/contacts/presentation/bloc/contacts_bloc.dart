@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../../domain/usecases/get_contacts.dart';

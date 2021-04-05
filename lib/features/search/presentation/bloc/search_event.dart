@@ -13,4 +13,9 @@ class SearchStringEvent extends SearchEvent {
   SearchStringEvent({@required this.searchField});
 }
 
-class SearchTilePressedEvent extends SearchEvent {}
+class SearchTilePressedEvent extends SearchEvent {
+  final UserModel user;
+  final UserModel peer;
+
+  SearchTilePressedEvent({@required this.user, @required this.peer});
+}

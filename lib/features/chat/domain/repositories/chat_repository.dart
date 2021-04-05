@@ -6,5 +6,5 @@ abstract class ChatRepository {
   Either<Failure, Stream> getConversation(String conversationID);
 
   Future<Either<Failure, bool>> sendMessage(
-      String conversationID, Message message);
+      String conversationID, String user1, String user2, Message message);
 }

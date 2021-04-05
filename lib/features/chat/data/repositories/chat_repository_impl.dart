@@ -22,8 +22,8 @@ class ChatRepositoryImpl implements ChatRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> sendMessage(
-      String conversationID, Message message) async {
+  Future<Either<Failure, bool>> sendMessage(String conversationID, String user1,
+      String user2, Message message) async {
     MessageModel messageModel = MessageModel(
         text: message.text,
         senderUID: message.senderUID,
@@ -32,8 +32,8 @@ class ChatRepositoryImpl implements ChatRepository {
         photoURL: message.photoURL,
         type: message.type);
     try {
-      return Right(
-          await chatDataSource.sendMessage(conversationID, messageModel));
+      return Right(await chatDataSource.sendMessage(
+          conversationID, user1, user2, messageModel));
     } on Exception {
       return Future.value(Left(SendMessageFailure()));
     }

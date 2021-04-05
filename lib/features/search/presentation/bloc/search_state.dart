@@ -19,4 +19,9 @@ class SearchedState extends SearchState {
 
 class SearchError extends SearchState {}
 
-class SearchTilePressedState extends SearchState {}
+class SearchTilePressedState extends SearchState {
+  final UserModel user;
+  final UserModel peer;
+
+  SearchTilePressedState({@required this.user, @required this.peer});
+}

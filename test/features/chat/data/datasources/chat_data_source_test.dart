@@ -19,6 +19,7 @@ void main() {
     mockFirebaseFirestore = FirebaseFirestore.instance;
     dataSource = ChatDataSourceImpl(firebase: mockFirebaseFirestore);
     message = Message(
+        date: Timestamp.now(),
         text: "test",
         senderUID: "test",
         receiverUID: "test",
@@ -50,8 +51,8 @@ void main() {
               .doc("vqBeHp4tY5YnLgenlBkD"))
           .thenAnswer((_) => docRef);
 
-      final result =
-          await dataSource.sendMessage("vqBeHp4tY5YnLgenlBkD", message);
+      final result = await dataSource.sendMessage(
+          "vqBeHp4tY5YnLgenlBkD", "1", "2", message);
 
       expect(result, equals(true));
     });

@@ -3,7 +3,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:skype_clone_flutter_tdd_clean_architecture/core/error/exceptions.dart';
-import 'package:skype_clone_flutter_tdd_clean_architecture/core/error/failures.dart';
 import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/data/datasources/contacts_from_device_source_data.dart';
 import 'package:skype_clone_flutter_tdd_clean_architecture/features/contacts/domain/repository/contacts_repostiory.dart';
 

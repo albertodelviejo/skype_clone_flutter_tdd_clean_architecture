@@ -1,24 +1,32 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import '../../../auth/presentation/bloc/auth_event.dart';
 import '../../domain/entities/message.dart';
 import '../../domain/usecases/send_message.dart';
-import '../bloc/chat_bloc.dart';
 
 import 'modal_tile.dart';
 
 class ChatControls extends StatefulWidget {
+  final String user1;
+  final String user2;
+
+  const ChatControls({Key key, @required this.user1, @required this.user2})
+      : super(key: key);
+
   @override
-  _ChatControlsState createState() => _ChatControlsState();
+  _ChatControlsState createState() =>
+      _ChatControlsState(user1: user1, user2: user2);
 }
 
 class _ChatControlsState extends State<ChatControls> {
+  final String user1;
+  final String user2;
   bool isWriting = false;
   TextEditingController textFieldController = TextEditingController();
   FocusNode textFieldFocus = FocusNode();
   SendMessage sendMessageUseCase = SendMessage(GetIt.instance.get());
+
+  _ChatControlsState({@required this.user1, @required this.user2});
 
   @override
   Widget build(BuildContext context) {
@@ -111,8 +119,8 @@ class _ChatControlsState extends State<ChatControls> {
       var text = textFieldController.text;
 
       Message _message = Message(
-          receiverUID: "2",
-          senderUID: "1",
+          receiverUID: user2,
+          senderUID: user1,
           text: text,
           date: Timestamp.now(),
           type: 'text',
@@ -124,11 +132,18 @@ class _ChatControlsState extends State<ChatControls> {
 
       textFieldController.text = "";
 
-      sendMessageUseCase(
-          SendMessageParams(conversationID: "21", message: _message));
+      var list = [user1, user2];
+      list.sort();
+      String conversationID = list[0] + list[1];
 
-      // dispatchSendMessageEvent(
-      //     context: context, conversationID: "21", message: _message);
+      sendMessageUseCase(SendMessageParams(
+          conversationID: conversationID,
+          user1: user1,
+          user2: user2,
+          message: _message));
+
+      //dispatchSendMessageEvent(
+      //    context: context, conversationID: "21", message: _message);
     }
 
     return Container(
